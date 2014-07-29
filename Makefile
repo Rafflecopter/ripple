@@ -8,7 +8,7 @@ MINIFY = ./node_modules/.bin/minify
 build: components $(find lib/*.js)
 	@${COMPONENT} build --dev
 
-prod:
+prod: components $(find lib/*.js)
 	@${COMPONENT} build
 
 components: node_modules component.json
@@ -45,4 +45,8 @@ release: test
 	git changelog --tag $$VERSION && \
 	git release $$VERSION
 
-.PHONY: clean test karma patch release prod
+dist: prod
+	mkdir -p dist
+	mv build/build.js dist/ripple.js
+
+.PHONY: clean test karma patch release prod dist
