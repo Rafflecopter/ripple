@@ -2901,3 +2901,6 @@ module.exports = ChildBinding;
 });
 
 require("ripple")
+
+if (module && module.exports) module.exports = require("ripple")
+

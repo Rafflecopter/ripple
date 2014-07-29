@@ -48,5 +48,6 @@ release: test
 dist: prod
 	mkdir -p dist
 	mv build/build.js dist/ripple.js
+	echo "\nif (module && module.exports) module.exports = require(\"ripple\")\n" >> dist/ripple.js
 
 .PHONY: clean test karma patch release prod dist
